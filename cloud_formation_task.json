@@ -78,6 +78,13 @@
                 "RouteTableId" : {"Ref":"Vpc1RouteTable"}
               }
         },
+        "PublicRTSubnetAssociation" : {
+            "Type" : "AWS::EC2::SubnetRouteTableAssociation",
+            "Properties" : {
+                "SubnetId" : {"Ref": "Vpc1PublicSubnet"},
+                "RouteTableId" : {"Ref":"Vpc1RouteTable"}
+            }
+        },
         "vpc2" : {
             "Type" : "AWS::EC2::VPC",
             "Properties" : {
