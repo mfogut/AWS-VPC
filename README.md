@@ -5,3 +5,4 @@
 - 5-Internet Gateway attached to vpc1.
 - 6-Route Table created for vpc1 Public Subnet.
 - 7-Route added to Route Table for open public subnet to internet.
+- 8-Subnet Association added to route table.
