@@ -95,6 +95,10 @@
                 "Tags" : [ {"Key" : "Name", "Value" : "Vpc1-Public-Subnet-NAT-GW" } ]
             }
         },
+        "EIP" : {
+            "Type" : "AWS::EC2::EIP",
+            "Properties" : {}
+          },
         "vpc2" : {
             "Type" : "AWS::EC2::VPC",
             "Properties" : {
