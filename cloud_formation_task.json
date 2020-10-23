@@ -12,7 +12,6 @@
             "Default": "/aws/service/ami-amazon-linux-latest/amzn2-ami-hvm-x86_64-gp2"
         }
     },
-
     "Resources" : {
         "vpc1" : {
             "Type" : "AWS::EC2::VPC",
@@ -24,7 +23,6 @@
                 "InstanceTenancy" : "default"
             }
         },
-
         "Vpc1PublicSubnet" : {
             "Type" : "AWS::EC2::Subnet",
             "Properties" : {
@@ -35,7 +33,6 @@
                 "MapPublicIpOnLaunch" : true
             }
         },
-
         "Vpc1PrivateSubnet" : {
             "Type" : "AWS::EC2::Subnet",
             "Properties" : {
@@ -44,10 +41,8 @@
                 "AvailabilityZone" : {"Fn::Select" : ["0",{"Fn::GetAZs" : ""}]},
                 "CidrBlock" : "10.0.1.0/24",
                 "MapPublicIpOnLaunch" : false
-
             }
         },
-
         "Vpc1Igw" : {
             "Type" : "AWS::EC2::InternetGateway",
             "DependsOn" : "vpc1",
@@ -62,7 +57,7 @@
                 "VpcId" : {"Ref":"vpc1"}
             }
         },
-        "Vpc1RouteTable" : {
+        "Vpc1PublicRouteTable" : {
             "Type": "AWS::EC2::RouteTable",
             "Properties" : {
                 "Tags" :[{"Key":"Name", "Value": "Vpc1-Public-RT"}],
@@ -75,14 +70,22 @@
             "Properties" : {
                 "DestinationCidrBlock" : "0.0.0.0/0",
                 "GatewayId" : {"Ref":"Vpc1Igw"},
-                "RouteTableId" : {"Ref":"Vpc1RouteTable"}
+                "RouteTableId" : {"Ref":"Vpc1PublicRouteTable"}
               }
         },
         "PublicRTSubnetAssociation" : {
             "Type" : "AWS::EC2::SubnetRouteTableAssociation",
             "Properties" : {
                 "SubnetId" : {"Ref": "Vpc1PublicSubnet"},
-                "RouteTableId" : {"Ref":"Vpc1RouteTable"}
+                "RouteTableId" : {"Ref":"Vpc1PublicRouteTable"}
+            }
+        },
+        "Vpc1PrivateRouteTable" : {
+            "Type" : "AWS::EC2::RouteTable",
+            "Properties" : {
+                "Tags" :[{"Key" : "Name", "Value" : "Vpc1-Private-RT"}],
+                "VpcId" : {"Ref" : "vpc1"}
+        
             }
         },
         "vpc2" : {
@@ -94,7 +97,6 @@
                 "EnableDnsSupport" : true,
                 "InstanceTenancy" : "default"
             }
-
         },
         "Vpc2PublicSubnet" : {
             "Type" : "AWS::EC2::Subnet",
@@ -104,7 +106,7 @@
                 "AvailabilityZone" : {"Fn::Select" : ["0",{"Fn::GetAZs" : ""}]},
                 "CidrBlock" : "10.1.0.0/24",
                 "MapPublicIpOnLaunch" : true
-
+        
             }
         },
         "Vpc2PrivateSubnet" : {
@@ -115,7 +117,6 @@
                 "AvailabilityZone" : {"Fn::Select" : ["0",{"Fn::GetAZs" : ""}]},
                 "CidrBlock" : "10.1.1.0/24",
                 "MapPublicIpOnLaunch" : false
-
             }
         },
         "Vpc2Igw" : {
