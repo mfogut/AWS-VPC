@@ -85,7 +85,14 @@
             "Properties" : {
                 "Tags" :[{"Key" : "Name", "Value" : "Vpc1-Private-RT"}],
                 "VpcId" : {"Ref" : "vpc1"}
-        
+            }
+        },
+        "Vpc1PublicSubnetNATGW" : {
+            "Type" : "AWS::EC2::NatGateway",
+            "Properties" : {
+                "AllocationId" : { "Fn::GetAtt" : ["EIP", "AllocationId"]},
+                "SubnetId" : { "Ref" : "Vpc1PublicSubnet"},
+                "Tags" : [ {"Key" : "Name", "Value" : "Vpc1-Public-Subnet-NAT-GW" } ]
             }
         },
         "vpc2" : {
