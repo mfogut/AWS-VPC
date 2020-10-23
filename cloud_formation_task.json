@@ -98,7 +98,15 @@
         "EIP" : {
             "Type" : "AWS::EC2::EIP",
             "Properties" : {}
-          },
+        },
+        "RTPrivateRoute" : {
+            "Type" : "AWS::EC2::Route",
+            "Properties" : {
+                "DestinationCidrBlock" : "0.0.0.0/0",
+                "NatGatewayId" : {"Ref" : "Vpc1PublicSubnetNATGW"},
+                "RouteTableId" : {"Ref" : "Vpc1PrivateRouteTable"}
+            }
+        },
         "vpc2" : {
             "Type" : "AWS::EC2::VPC",
             "Properties" : {
