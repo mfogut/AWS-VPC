@@ -1,5 +1,7 @@
 This CloudFormation template will automate VPC and some other AWS resources.
-
+- 1-Specified version of Cloudformation template. Line 2
+- 2-Choose KeyName from existing keys. Line 6-9
+- 3-Choosing latest Linux ima for instances. Line 10-14
 - 1-Virtual Private Cloud created (VPC) "vpc1". Line 16-25
 - 2-Public Subnet created for vpc1. Line 26-35
 - 3-Private Subnet created for vpc1. Line 36-45
@@ -17,4 +19,4 @@ This CloudFormation template will automate VPC and some other AWS resources.
 - 15-Public Subnet created for vpc2. Line 127-137
 - 16-Private Subnet created for vpc2. Line 138-147
 - 17-Internet Gateway created for vpc2. Line 148-154
-- 18-Internet Gateway attached to vpc1. Line 155-161
+- 18-Internet Gateway attached to vpc2. Line 155-161
