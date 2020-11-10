@@ -2,16 +2,6 @@
     "AWSTemplateFormatVersion" : "2010-09-09",
     "Description" : "This template is for VPC",
 
-    "Parameters": {
-        "KeyName": {
-            "Description": "This key is used for ssh into EC2 instance",
-            "Type": "AWS::EC2::KeyPair::KeyName"
-        },
-        "LatestAmiId": {
-            "Type": "AWS::SSM::Parameter::Value<AWS::EC2::Image::Id>", 
-            "Default": "/aws/service/ami-amazon-linux-latest/amzn2-ami-hvm-x86_64-gp2"
-        }
-    },
     "Resources" : {
         "vpc1" : {
             "Type" : "AWS::EC2::VPC",
